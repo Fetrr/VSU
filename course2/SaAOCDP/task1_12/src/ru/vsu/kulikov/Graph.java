@@ -1,14 +1,13 @@
 package ru.vsu.kulikov;
 
-import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.LayoutManager;
 import javax.swing.*;
 
 public class Graph {
     public void paintGraph(final int[] coord) {
         JFrame frame = new JFrame();
-        JPanel panel = new JPanel((LayoutManager)null) {
+        JPanel panel = new JPanel() {
+            @Override
             public void paint(Graphics g) {
                 super.paint(g);
                 int x1 = 0;
@@ -27,7 +26,6 @@ public class Graph {
         frame.add(panel);
         frame.setSize(800, 600);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo((Component)null);
         frame.setVisible(true);
     }
 }
