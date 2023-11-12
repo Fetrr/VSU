@@ -1,17 +1,18 @@
-package ru.vsu.kulikov;
+package ru.vsu.kulikov.AlgorithmComplexity;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Graph {
-    public void paintGraph(final int[] coord) {
+    public void paintGraph(int x, int y, final int[] coord) {
+        // coord[] like [x1, y1, x2, y2, ..., xn, yn]
         JFrame frame = new JFrame();
         JPanel panel = new JPanel() {
             @Override
             public void paint(Graphics g) {
                 super.paint(g);
-                int x1 = 0;
-                int y1 = this.getHeight();
+                int x1 = x;
+                int y1 = y;
 
                 for(int i = 0; i < coord.length; i += 2) {
                     int x2 = coord[i];
@@ -29,3 +30,4 @@ public class Graph {
         frame.setVisible(true);
     }
 }
+

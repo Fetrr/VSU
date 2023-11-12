@@ -1,4 +1,4 @@
-package ru.vsu.kulikov;
+package ru.vsu.kulikov.AlgorithmComplexity;
 
 public class CalculateAlgorithmComplexity {
 }
