@@ -2,6 +2,16 @@ package ru.vsu.kulikov.AlgorithmComplexity;
 
 
 public class CreateCoordsForGraph {
+    private int[] coordsX, coordsY;
+
+    public int[] getCoordsX() {
+        return coordsX;
+    }
+
+    public int[] getCoordsY() {
+        return coordsY;
+    }
+
     public void warmUp(int repeats, int len, int range) {
         int[] array = new int[len];
 
@@ -24,10 +34,9 @@ public class CreateCoordsForGraph {
         System.out.println(array[array.length - 1] + "]");
     }
 
-    private int[] timetable(int repeats, int min_len, int step, int valueRange, boolean arr_out) {
-        int[] coords = new int[repeats * 2];
-        int[] coord_X = new int[repeats];
-        int[] coord_y = new int[repeats];
+    private void timetable(int repeats, int min_len, int step, int valueRange, boolean arr_out) {
+        coordsX = new int[repeats];
+        coordsY = new int[repeats];
 
         warmUp(10, 1000, 1000);
 
@@ -62,39 +71,28 @@ public class CreateCoordsForGraph {
             System.out.println("array lenght: " + len + "\ntime: " + time + " ");
             System.out.println("--------------------------------");
 
-            // ToDo: write method in class Graph that dont print graph if had 1 point
-//            if (repeats == 1) {
-//                return null;
-//            }
-
             /**
-             * Convert X coordinates to window size and write Y coordinates.
-             * Can’t immediately convert Y coordinates because it is necessary to know their range
-             * i.e. it is necessary to calculate
+             * Adding coordinates X and Y to arrays
              */
-            coord_X[curr_step] = (len + step - min_len) * 800 / (min_len + (step * repeats - 1) - min_len);
-            coord_y[curr_step] = (int)time;
+            // oldRange[oldMin .. oldMax] -> newRange[newMin .. newMax]
+            //
+            // convert = (value - oldMin) * newMax / oldRangeOfValues
+            coordsX[curr_step] = len;
+            coordsY[curr_step] = (int)time;
+
+//            coord_X[curr_step] = (len + step - min_len) * 800 / (min_len + (step * repeats - 1) - min_len);
+//            coord_y[curr_step] = (int)time;
         }
 
         /**
          * Convert Y coordinates to window size
          */
-        int[] coord_Y = new int[coord_y.length];
-        int old_min = coord_y[0]; // min element = first element because time increases
-        int old_range = (coord_y[coord_y.length - 1] - coord_y[0]); // old range = max element - min element
-
-        for(int i = 0; i < coord_y.length; ++i) {
-            coord_Y[i] = (coord_y[i] - old_min) * 600 / old_range;
-        }
-
-        /**
-         * Adding X and Y coordinates to array that unites them
-         */
-        for(int i = 0; i < repeats; ++i) {
-            coords[i * 2] = coord_X[i];
-            coords[i * 2 + 1] = coord_Y[i];
-        }
-
-        return coords;
+//        int[] coord_Y = new int[coord_y.length];
+//        int old_min = coord_y[0]; // min element = first element because time increases
+//        int old_range = (coord_y[coord_y.length - 1] - coord_y[0]); // old range = max element - min element
+//
+//        for(int i = 0; i < coord_y.length; ++i) {
+//            coord_Y[i] = (coord_y[i] - old_min) * 600 / old_range;
+//        }
     }
 }
