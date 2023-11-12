@@ -3,6 +3,8 @@ package ru.vsu.kulikov;
 import ru.vsu.kulikov.PriorityQueue.PriorityQueueOnArray;
 import ru.vsu.kulikov.PriorityQueue.PriorityQueueOnBinaryTree;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("-------------- Task 1 --------------");
@@ -45,5 +47,11 @@ public class Main {
 
         System.out.println(queueOnArray.extractMax());
         queueOnArray.printArray();
+
+        MainWindow mw = new MainWindow();
+        mw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        mw.setSize(800, 600);
+        mw.setTitle("Algorithm complexity on graphs");
+        mw.setVisible(true);
     }
 }
