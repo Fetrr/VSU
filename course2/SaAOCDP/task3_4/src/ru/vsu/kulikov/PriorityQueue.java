@@ -1,9 +1,9 @@
 package ru.vsu.kulikov;
 
-import ru.vsu.kulikov.PriorityQueue.*;
-
-public interface AbstractPriorityQueue {
+public interface PriorityQueue {
     void insert(int x, int p);
     void increase(int x, int p);
     int extractMax();
+    void printQueue();
+    void clean();
 }

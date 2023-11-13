@@ -1,7 +1,6 @@
 package ru.vsu.kulikov;
 
-import ru.vsu.kulikov.PriorityQueue.PriorityQueueOnArray;
-import ru.vsu.kulikov.PriorityQueue.PriorityQueueOnBinaryTree;
+import ru.vsu.kulikov.PriorityQueueRealizations.*;
 
 import javax.swing.*;
 
@@ -22,7 +21,7 @@ public class Main {
         queueOnBinaryTree.insert(7, 7);
         queueOnBinaryTree.insert(10, 10);
 
-        queueOnBinaryTree.printTree();
+        queueOnBinaryTree.printQueue();
         queueOnBinaryTree.printArray();
 
         System.out.println("-------------- Task 2 --------------");
@@ -40,14 +39,17 @@ public class Main {
         queueOnArray.insert(7, 7);
         queueOnArray.insert(10, 10);
 
-        queueOnArray.printArray();
+        queueOnArray.printQueue();
 
         queueOnArray.increase(14, 17);
-        queueOnArray.printArray();
+        queueOnArray.printQueue();
 
         System.out.println(queueOnArray.extractMax());
-        queueOnArray.printArray();
+        queueOnArray.printQueue();
 
+        /**
+         * Print graph in Main Window
+         */
         MainWindow mw = new MainWindow();
         mw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         mw.setSize(800, 600);

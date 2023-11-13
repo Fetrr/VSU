@@ -1,10 +1,9 @@
 package ru.vsu.kulikov.AlgorithmComplexity;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class Graph {
-    private final int[] coordsX, coordsY;
+    private final int[] coordsX1, coordsY1;
     private final Color clr;
     private final int nPoints;
 
@@ -12,19 +11,47 @@ public class Graph {
         this.clr = clr;
         this.nPoints = nPoints;
 
-        this.coordsX = coordsX;
-        this.coordsY = coordsY;
+        coordsX1 = new int[nPoints];
+        coordsY1 = new int[nPoints];
 
-        int minX = coordsX[0], maxX = coordsY[0];
-        int minY = coordsX[nPoints - 1], maxY = coordsY[nPoints - 1];
+        int minX = coordsX[0];
+        for (int i = 1; i < coordsX.length; i++) {
+            if (coordsX[i] < minX) {
+                minX = coordsX[i];
+            }
+        }
+        int maxX = coordsX[0];
+        for (int i = 1; i < coordsX.length; i++) {
+            if (coordsX[i] > maxX) {
+                maxX = coordsX[i];
+            }
+        }
+        int minY = coordsY[0];
+        for (int i = 1; i < coordsY.length; i++) {
+            if (coordsY[i] < minY) {
+                minY = coordsY[i];
+            }
+        }
+        int maxY = coordsY[0];
+        for (int i = 1; i < coordsY.length; i++) {
+            if (coordsY[i] > maxY) {
+                maxY = coordsY[i];
+            }
+        }
+        //System.out.println("minX = " + minX + " maxX = " + maxX + " minY = " + minY + " maxY = " + maxY);
         for (int i = 0; i < nPoints; ++i) {
             /**
              * coordsX[i] = startX + convertedCoordsX[i]
              * coordsY[i] = startY + (height - convertedCoordsY[i])
              */
-            coordsX[i] = startX + ((coordsX[i] - minX) * width / (maxX - minX));
-            coordsY[i] = startY + (height - ((coordsY[i] - minY) * 600 / (maxY - minY)));
+            //System.out.print("old: " + coordsX[i] + " " + coordsY[i] + "; ");
+
+            coordsX1[i] = startX + ((coordsX[i] - minX) * (width - startX) / (maxX - minX));
+            coordsY1[i] = startY + height - (int)(((long)coordsY[i] - minY) * (height - startY) / (maxY - minY));
+
+            //System.out.println("new " + coordsX1[i] + " " + coordsY1[i] + " i = " + i + " n = " + nPoints);
         }
+        //System.out.println("minX = " + minX + " maxX = " + maxX + " minY = " + minY + " maxY = " + maxY);
     }
 
     public void draw(Graphics2D g2d) {
@@ -34,9 +61,9 @@ public class Graph {
         /**/
 
         for (int i = 0; i < nPoints; i++) {
-            g2d.fillOval(coordsX[i] - 5, coordsY[i] - 5,10, 10);
+            g2d.fillOval(coordsX1[i] - 2, coordsY1[i] - 2,4, 4);
         }
-        g2d.drawPolyline(coordsX, coordsY, nPoints);
+        g2d.drawPolyline(coordsX1, coordsY1, nPoints);
 
         /**/
         g2d.setStroke(old_stroke);

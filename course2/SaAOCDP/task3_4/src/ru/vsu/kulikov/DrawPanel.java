@@ -8,13 +8,14 @@ import java.awt.*;
 public class DrawPanel extends JPanel {
     // create objects
     Graph graph;
+    CreateCoordsForGraph createCoordsForGraph;
     public DrawPanel () {
         // construct objects
-    }
-
-    public void setGraph(int startX, int startY, int width, int height,
-                         int[] coordsX, int[] coordsY, Color clr, int nPoints) {
-        graph = new Graph(startX, startY, width, height, coordsX, coordsY, clr, nPoints);
+        createCoordsForGraph = new CreateCoordsForGraph();
+        createCoordsForGraph.timetable(1000, 10, 10, 1000, false);
+        graph = new Graph(0, 0, 800, 600,
+                createCoordsForGraph.getCoordsX(), createCoordsForGraph.getCoordsY(),
+                new Color(0, 0, 0), createCoordsForGraph.getnPoints());
     }
 
     @Override

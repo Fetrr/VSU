@@ -1,4 +1,4 @@
-package ru.vsu.kulikov.PriorityQueue;
+package ru.vsu.kulikov.PriorityQueueRealizations;
 
 public class Node {
     int value;

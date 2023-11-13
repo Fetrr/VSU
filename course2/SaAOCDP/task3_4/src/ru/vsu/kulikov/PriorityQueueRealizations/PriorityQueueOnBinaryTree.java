@@ -1,21 +1,23 @@
-package ru.vsu.kulikov.PriorityQueue;
+package ru.vsu.kulikov.PriorityQueueRealizations;
 
-import ru.vsu.kulikov.AbstractPriorityQueue;
+import ru.vsu.kulikov.PriorityQueue;
 
-public class PriorityQueueOnBinaryTree implements AbstractPriorityQueue {
+public class PriorityQueueOnBinaryTree implements PriorityQueue {
     private int size;
+    private final int maxSize;
     private Node[] heap;
 
     public PriorityQueueOnBinaryTree(int maxSize) {
+        this.maxSize = maxSize;
         heap = new Node[maxSize];
         size = 0;
     }
 
     /******************************************************************************/
 
-    public void printTree() {
+    public void printQueue() {
         System.out.println("\n--------------- tree ---------------");
-        printTree(0, 0, "root");
+        printQueue(0, 0, "root");
         System.out.println("------------------------------------\n");
     }
 
@@ -28,12 +30,12 @@ public class PriorityQueueOnBinaryTree implements AbstractPriorityQueue {
         return str;
     }
 
-    private void printTree(int i, int level, String position) {
+    private void printQueue(int i, int level, String position) {
         if (i < size) {
             System.out.println(repeatString(level, "   ") + position + "_" + level + ": " +
                     heap[i].value + " (p = " + heap[i].priority + ") ");
-            printTree(2 * i + 1, level + 1, "left");
-            printTree(2 * i + 2, level + 1, "right");
+            printQueue(2 * i + 1, level + 1, "left");
+            printQueue(2 * i + 2, level + 1, "right");
         }
     }
 
@@ -112,6 +114,11 @@ public class PriorityQueueOnBinaryTree implements AbstractPriorityQueue {
         size -= 1;
         heapifyDown(0);
         return max;
+    }
+
+    public void clean() {
+        heap = new Node[maxSize];
+        size = 0;
     }
 }
 
