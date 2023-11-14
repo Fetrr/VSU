@@ -28,7 +28,7 @@ public class PriorityQueueOnArray implements PriorityQueue {
         array[j] = temp;
     }
 
-    private void bubbleSort() {
+    private void bubbleSort() { // O(n) = n^2
 //        int i = 0;
 //        boolean swapped = true;
 //        while (swapped) {
@@ -51,7 +51,7 @@ public class PriorityQueueOnArray implements PriorityQueue {
     }
 
     @Override
-    public void insert(int x, int p) {
+    public void insert(int x, int p) { // O(n) = n^2
         if (size >= array.length) {
             System.out.println("Heap overflow");
             return;
@@ -62,7 +62,7 @@ public class PriorityQueueOnArray implements PriorityQueue {
     }
 
     @Override
-    public void increase(int x, int p) {
+    public void increase(int x, int p) { // O(n) = n * n^2 = n^3
         for (int i = 0; i < size; i++) {
             if (array[i].value == x && array[i].priority < p) {
                 array[i].priority = p;
@@ -72,7 +72,7 @@ public class PriorityQueueOnArray implements PriorityQueue {
     }
 
     @Override
-    public int extractMax() {
+    public int extractMax() { // O(n) = n
         if (size < 1) {
             throw new NullPointerException("Heap empty");
         }
@@ -81,9 +81,6 @@ public class PriorityQueueOnArray implements PriorityQueue {
             array[i] = array[i + 1];
         }
         size -= 1;
-//        heap[0] = heap[size - 1];
-//        size -= 1;
-//        bubbleSort();
         return max;
     }
 

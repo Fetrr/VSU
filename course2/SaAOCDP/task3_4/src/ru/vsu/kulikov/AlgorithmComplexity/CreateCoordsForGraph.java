@@ -7,7 +7,8 @@ import ru.vsu.kulikov.PriorityQueueRealizations.*;
 public class CreateCoordsForGraph {
     private static int[] coordsX, coordsY;
     private static int nPoints;
-    PriorityQueue pq = new PriorityQueueOnArray(100000000);
+    PriorityQueue pqa = new PriorityQueueOnArray(100000000);
+    PriorityQueue pqh = new PriorityQueueOnBinaryTree(100000000);
 
     public int[] getCoordsX() {
         return coordsX;
@@ -26,12 +27,13 @@ public class CreateCoordsForGraph {
 
         for(int i = 0; i < len; ++i) {
             array[i] = (int)(Math.random() * (double)(range + 1));
-            pq.insert(array[i], i);
+            pqh.insert(array[i], i);
         }
+        pqh.insert(1234567, 10001);
         for (int i = 0; i < repeats; ++i) {
-            pq.extractMax();
+            pqh.increase(1234567, 10011);
         }
-        pq.clean();
+        pqh.clean();
     }
 
     public void arrayPrint(String arr_name, Object[] array) {
@@ -52,7 +54,7 @@ public class CreateCoordsForGraph {
         warmUp(10, 1000, 1000);
 
         for(int i = 0; i < min_len; ++i) {
-            pq.insert(i*100, i);
+            pqh.insert(i*100, i);
         }
 
         //rep = 3, minLen = 5, step = 1, valRange = 10
@@ -64,9 +66,9 @@ public class CreateCoordsForGraph {
             for(int i = 0; i < step - 1; ++i) {
 //                pq.insert((int)(Math.random() * (double)(valueRange + 1)),
 //                        (int)(Math.random() * (double)(valueRange + 1)));
-                pq.insert(i*100, i);
+                pqh.insert(i*100, i);
             }
-            pq.insert(1234567, 10001);
+            pqh.insert(1234567, 10001);
 
 
             /**
@@ -76,7 +78,7 @@ public class CreateCoordsForGraph {
 
             // target method
             // pq.extractMax();
-            pq.increase(1234567, 10002);
+            pqh.increase(1234567, 10002);
 
             long time = System.nanoTime() - m;
 
@@ -84,7 +86,7 @@ public class CreateCoordsForGraph {
              * Print queue if needed
              */
             if (arr_out) {
-                pq.printQueue();
+                pqh.printQueue();
             }
 
             /**
@@ -99,6 +101,6 @@ public class CreateCoordsForGraph {
             coordsX[curr_step] = len;
             coordsY[curr_step] = (int)time;
         }
-        pq.clean();
+        pqh.clean();
     }
 }

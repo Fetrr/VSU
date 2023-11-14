@@ -50,7 +50,7 @@ public class PriorityQueueOnBinaryTree implements PriorityQueue {
 
     /******************************************************************************/
 
-    public void heapifyUp(int i) {
+    public void heapifyUp(int i) { // O(n) = log(n)
         int parentIndex = i/2;
         while (i > 0 && heap[parentIndex].priority < heap[i].priority) {
             swap(i, i/2);
@@ -59,7 +59,7 @@ public class PriorityQueueOnBinaryTree implements PriorityQueue {
         }
     }
 
-    public void heapifyDown(int i) {
+    public void heapifyDown(int i) { // O(n) = log(n)
         while (i < size) {
             int left = 2*i + 1;
             int right = 2*i + 2;
@@ -84,7 +84,7 @@ public class PriorityQueueOnBinaryTree implements PriorityQueue {
     }
 
     @Override
-    public void insert(int x, int p) {
+    public void insert(int x, int p) { // O(n) = log(n)
         if (size >= heap.length) {
             System.out.println("Heap overflow");
             return;
@@ -95,7 +95,7 @@ public class PriorityQueueOnBinaryTree implements PriorityQueue {
     }
 
     @Override
-    public void increase(int x, int p) {
+    public void increase(int x, int p) { // O(n) = log(n)
         for (int i = 0; i < size; i++) {
             if (heap[i].value == x && heap[i].priority < p) {
                 heap[i].priority = p;
@@ -105,7 +105,7 @@ public class PriorityQueueOnBinaryTree implements PriorityQueue {
     }
 
     @Override
-    public int extractMax() {
+    public int extractMax() { // O(n) = log(n)
         if (size < 1) {
             throw new NullPointerException("Heap empty");
         }

@@ -12,8 +12,8 @@ public class DrawPanel extends JPanel {
     public DrawPanel () {
         // construct objects
         createCoordsForGraph = new CreateCoordsForGraph();
-        createCoordsForGraph.timetable(1000, 10, 10, 1000, false);
-        graph = new Graph(0, 0, 800, 600,
+        createCoordsForGraph.timetable(50000, 10, 10, 1000, false);
+        graph = new Graph(0, 50, 800, 600,
                 createCoordsForGraph.getCoordsX(), createCoordsForGraph.getCoordsY(),
                 new Color(0, 0, 0), createCoordsForGraph.getnPoints());
     }
